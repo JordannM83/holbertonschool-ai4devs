@@ -1,167 +1,101 @@
 # Bug Descriptions
 
-## bug1.py
+## Bug 1 - bug1.py
 
-### Expected Behavior
+**Intended Behavior**: The user expects the script to print the full FizzBuzz sequence from 1 through 100. Numbers divisible by 3 should be replaced with `Fizz`, numbers divisible by 5 should be replaced with `Buzz`, and numbers divisible by both 3 and 5 should be replaced with `FizzBuzz`.
 
-The program should print the FizzBuzz sequence from 1 through 100. Multiples of 3 should print `Fizz`, multiples of 5 should print `Buzz`, and multiples of both 3 and 5 should print `FizzBuzz`.
+**Actual Behavior**: The script crashes before printing the sequence.
 
-### Actual Behavior
+**Issue Type**: Runtime error - `TypeError`.
 
-The program crashes before printing the sequence.
+**Issues**:
+1. The variable `a` is set to the string `"101"` instead of the integer `101`.
+2. `range(1, a)` receives a string argument, which Python does not allow.
 
-### Issue Type
-
-Runtime error - `TypeError`
-
-### Problem Analysis
-
-The `fizzbuzz()` function expects an integer limit because it passes the value to `range(1, a)`. The variable `a` is assigned the string `"101"` instead of the integer `101`, so Python raises a `TypeError` when `range()` receives a string.
-
-### Fix Recommendation
-
-Assign `a = 101` or convert the value before calling the function, for example `fizzbuzz(int(a))`.
-
-### Notes
-
-Using `101` as the upper limit is correct because `range(1, 101)` produces numbers from 1 through 100.
+**Notes**: Use `a = 101` or convert the value with `int(a)` before calling `fizzbuzz()`. The upper limit should be `101` because `range(1, 101)` produces values from 1 through 100.
 
 ---
 
-## bug2.py
+## Bug 2 - bug2.py
 
-### Expected Behavior
+**Intended Behavior**: The user expects the function to start checking numbers from 1, find the first even number, print that even number, and stop.
 
-The function should find the first even number after starting from 1, print it, and then stop.
+**Actual Behavior**: The script keeps printing odd numbers and never terminates.
 
-### Actual Behavior
+**Issue Type**: Logic error - infinite loop.
 
-The program keeps printing odd numbers and never stops.
+**Issues**:
+1. The loop starts with `i = 1`, which is odd.
+2. The statement `i += 2` keeps `i` odd forever.
+3. The condition `i % 2 == 0` is never true, so `verif` never changes.
 
-### Issue Type
-
-Logic error - infinite loop
-
-### Problem Analysis
-
-The loop starts with `i = 1`. Each iteration increases `i` by 2, so `i` remains odd forever. Because `i` never becomes even, the condition `i % 2 == 0` is never true, `verif` never changes, and the loop continues indefinitely.
-
-### Fix Recommendation
-
-Increment `i` by 1 instead of 2, or start from an even value if the goal is to print the first even number immediately.
-
-### Notes
-
-The indentation in the current file is valid. The issue is caused by the loop logic, not by Python syntax or indentation.
+**Notes**: Increment `i` by 1 instead of 2, or start from an even number if the first printed value should be even immediately. The current file does not have an indentation problem; the failure comes from the loop logic.
 
 ---
 
-## bug3.js
+## Bug 3 - bug3.js
 
-### Expected Behavior
+**Intended Behavior**: The user expects the function to start checking numbers from 1, find the first even number, print that even number, and stop when run with Node.js.
 
-The function should find the first even number after starting from 1, print it, and then stop.
+**Actual Behavior**: The program keeps printing odd numbers and never terminates. If run directly as `./bug3.js`, it may also fail because the file has no Node.js shebang.
 
-### Actual Behavior
+**Issue Type**: Logic error - infinite loop; execution setup issue.
 
-When run with Node.js, the program keeps printing odd numbers and never stops. If the file is run directly as `./bug3.js`, it may also fail because there is no shebang line.
+**Issues**:
+1. The loop starts with `i = 1`, which is odd.
+2. The statement `i += 2` keeps `i` odd forever.
+3. The condition `i % 2 === 0` is never true, so `verif` remains `true`.
+4. The file has executable permissions but no `#!/usr/bin/env node` shebang for direct shell execution.
 
-### Issue Type
-
-Logic error - infinite loop; execution portability issue
-
-### Problem Analysis
-
-The loop starts with `i = 1`. Each iteration increases `i` by 2, so `i` remains odd forever. The condition `i % 2 === 0` is never true, so `verif` remains `true` and the loop does not terminate. The file also has executable permissions but does not declare the Node.js interpreter with a shebang.
-
-### Fix Recommendation
-
-Increment `i` by 1 instead of 2, or start from an even value. Add `#!/usr/bin/env node` only if the file should be executed directly from the shell.
-
-### Notes
-
-The variable declarations already use `let`, so there is no implicit global variable issue in the current version of the file.
+**Notes**: Increment `i` by 1 instead of 2, or start from an even number. Add `#!/usr/bin/env node` only if the file is intended to run directly from the shell. The current file already uses `let`, so there is no implicit global variable issue.
 
 ---
 
-## bug4.js
+## Bug 4 - bug4.js
 
-### Expected Behavior
+**Intended Behavior**: The user expects the function to calculate the average score for `[85, 90, 78, 92, 88]` and print `Average score: 86.6`.
 
-The function should calculate the average of the numbers in the array and print `Average score: 86.6` for the provided sample data.
+**Actual Behavior**: The program prints `Average score: NaN`.
 
-### Actual Behavior
+**Issue Type**: Logic error - off-by-one error.
 
-The program prints `Average score: NaN`.
+**Issues**:
+1. The loop condition uses `i <= numbers.length`.
+2. The final loop iteration reads `numbers[numbers.length]`, which is outside the array.
+3. Adding `undefined` to `sum` produces `NaN`.
 
-### Issue Type
-
-Logic error - off-by-one error
-
-### Problem Analysis
-
-The loop condition is `i <= numbers.length`, which allows the loop to run one iteration past the final valid index. On the extra iteration, `numbers[numbers.length]` evaluates to `undefined`. Adding `undefined` to the running sum produces `NaN`, so the final average is invalid.
-
-### Fix Recommendation
-
-Change the loop condition to `i < numbers.length`.
-
-### Notes
-
-For the sample array `[85, 90, 78, 92, 88]`, the correct sum is `433` and the correct average is `86.6`.
+**Notes**: Change the loop condition to `i < numbers.length`. The valid indexes for the sample array are `0` through `4`, so the loop must stop before `i` reaches `5`.
 
 ---
 
-## bug5.c
+## Bug 5 - bug5.c
 
-### Expected Behavior
+**Intended Behavior**: The user expects the C program to compile cleanly and print the numbers from 0 through the provided value, inclusive, in a readable format.
 
-The program should compile cleanly and print the numbers from 0 through the given value, inclusive.
+**Actual Behavior**: The program uses `printf()` without including its declaration. If compiled permissively, it prints the numbers without separators, such as `012345678910`.
 
-### Actual Behavior
+**Issue Type**: Compilation issue; output formatting issue.
 
-The source uses `printf()` without including its standard declaration. If compiled permissively, the output is still hard to read because all numbers are printed without separators.
+**Issues**:
+1. The file is missing `#include <stdio.h>`, which declares `printf()`.
+2. `printf("%d", i)` prints each number directly next to the previous number.
+3. The semicolon after the `for` loop block is unnecessary and makes the code less clear.
 
-### Issue Type
-
-Compilation issue; output formatting issue
-
-### Problem Analysis
-
-The file calls `printf()` but does not include `stdio.h`, which provides the declaration for that function. The loop itself counts from 0 through `a`, but `printf("%d", i)` prints each number directly next to the previous one, producing unclear output such as `012345678910`.
-
-### Fix Recommendation
-
-Add `#include <stdio.h>` at the top of the file. Print a separator after each number, such as `printf("%d ", i);`.
-
-### Notes
-
-The semicolon after the `for` loop block is unnecessary and should be removed for clarity, although it is not the main functional problem.
+**Notes**: Add `#include <stdio.h>` at the top of the file and print a separator, such as `printf("%d ", i);`. Remove the unnecessary semicolon after the `for` block for clarity.
 
 ---
 
-## bug6.c
+## Bug 6 - bug6.c
 
-### Expected Behavior
+**Intended Behavior**: The user expects a C program named `bug6.c` to generate a random number and print whether that number is positive, negative, or zero.
 
-The program should generate a random number and print whether the number is positive, negative, or zero.
+**Actual Behavior**: The behavior cannot be verified because `bug6.c` is not present in the `bug_snippets` directory.
 
-### Actual Behavior
+**Issue Type**: Missing source file; documented syntax error.
 
-The behavior cannot be verified from the repository because `bug6.c` is missing from the `bug_snippets` directory.
+**Issues**:
+1. The descriptions file references `bug6.c`, but the source file is missing.
+2. Because the file is missing, the bug cannot be compiled, run, or confirmed from the repository.
+3. The existing documentation says the intended syntax bug is a missing semicolon after `return (0)`.
 
-### Issue Type
-
-Missing source file; documented syntax error
-
-### Problem Analysis
-
-There are two separate problems. First, the documentation references `bug6.c`, but the source file is not present, so the bug cannot be reproduced, compiled, or tested. Second, the existing description says the intended bug is a missing semicolon after `return (0)`, which would cause a C syntax error if that source file existed.
-
-### Fix Recommendation
-
-Add the missing `bug6.c` source file to `bug_snippets` so the bug can be reviewed directly. If the documented issue is accurate, fix the syntax error by writing `return (0);`.
-
-### Notes
-
-This entry should be rechecked after `bug6.c` is added. Until then, the syntax analysis is based only on the existing documentation, not on a source file in the repository.
+**Notes**: Add the missing `bug6.c` source file or remove this entry if it is not part of the assignment. If the documented syntax issue is accurate, the return statement should be written as `return (0);`.
