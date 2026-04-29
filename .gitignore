@@ -1,1 +1,5 @@
 a.out
+.codex
+
+git config --global user.email "jordann.miso@gmail.com"
+git config --global user.name "JordannM83"

@@ -103,23 +103,3 @@
 **Suggested Fix:** Add `#include <stdio.h>` and print a separator after each number, such as a space.
 
 **Notes:** The extra semicolon after the `for` block is not the main failure, but removing it makes the code cleaner and less confusing.
-
----
-
-## bug6.c
-
-**Intended Behavior:** The program should generate a random number and determine whether it is positive, negative, or zero.
-
-**Issue Type:** Missing source file; documented syntax error
-
-**Observed Behavior:** The bug cannot be reproduced from the repository because the source file is missing.
-
-**Issues:**
-1. `bug6.c` is described in this document but is not currently present in the `bug_snippets` directory.
-2. The documented syntax error is a missing semicolon after the `return (0)` statement.
-
-**Root Cause:** The documentation and the available snippet files are out of sync.
-
-**Suggested Fix:** Add `bug6.c` to the `bug_snippets` directory or remove this entry from the descriptions file. If the intended file is added, include the missing semicolon after `return (0)`.
-
-**Notes:** This entry should be verified once the actual `bug6.c` source file is available.
