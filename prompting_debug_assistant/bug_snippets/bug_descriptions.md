@@ -82,20 +82,3 @@
 3. The semicolon after the `for` loop block is unnecessary and makes the code less clear.
 
 **Notes**: Add `#include <stdio.h>` at the top of the file and print a separator, such as `printf("%d ", i);`. Remove the unnecessary semicolon after the `for` block for clarity.
-
----
-
-## Bug 6 - bug6.c
-
-**Intended Behavior**: The user expects a C program named `bug6.c` to generate a random number and print whether that number is positive, negative, or zero.
-
-**Actual Behavior**: The behavior cannot be verified because `bug6.c` is not present in the `bug_snippets` directory.
-
-**Issue Type**: Missing source file; documented syntax error.
-
-**Issues**:
-1. The descriptions file references `bug6.c`, but the source file is missing.
-2. Because the file is missing, the bug cannot be compiled, run, or confirmed from the repository.
-3. The existing documentation says the intended syntax bug is a missing semicolon after `return (0)`.
-
-**Notes**: Add the missing `bug6.c` source file or remove this entry if it is not part of the assignment. If the documented syntax issue is accurate, the return statement should be written as `return (0);`.
