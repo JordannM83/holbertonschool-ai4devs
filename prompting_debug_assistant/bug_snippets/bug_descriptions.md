@@ -103,13 +103,21 @@ Increment `i` by 1 instead of 2, or start from an even number. Add `#!/usr/bin/e
 
 ### Intended Behavior
 
-The user expects the function to calculate the average score for this array:
+The user expects the JavaScript program to calculate the average score from the provided list of scores and print the result as a readable message.
+
+Input array:
 
 ```javascript
 [85, 90, 78, 92, 88]
 ```
 
-The correct sum is `433`, and the correct average is `86.6`.
+Expected calculation:
+
+1. Add every number in the array.
+2. Divide the sum by the number of items in the array.
+3. Print the final average.
+
+The correct sum is `433`, and there are `5` scores, so the correct average is `86.6`.
 
 Expected output:
 
@@ -145,9 +153,22 @@ Change the loop condition to `i < numbers.length`. The valid indexes for the sam
 
 ### Intended Behavior
 
-The user expects the C program to compile cleanly and print the numbers from 0 through the provided value, inclusive.
+The user expects the C program to compile cleanly and print a count from 0 through the provided value, inclusive.
 
-For the current value `num = 10`, the expected output should be readable and separated, for example:
+For the current value:
+
+```c
+int num = 10;
+```
+
+Expected behavior should include:
+
+1. Start printing at `0`.
+2. Continue one number at a time.
+3. Include the final value `10`.
+4. Separate the numbers so the output is readable.
+
+Expected output:
 
 ```text
 0 1 2 3 4 5 6 7 8 9 10
